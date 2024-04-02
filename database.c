@@ -7,21 +7,33 @@ int main() {
     char command;
 
     while (1) {
-        commandselection();
+        printf("type a command assocaited by number in or .help for help or .exit to exit");
+        metacommand();
         scanf(" %c", &command);
         commands(command);
     }
-
     return 0;
 }
-
+void metacommand(){
+    char input = 4;
+    scanf("c", input);
+    while(1){
+        if (strcmp(input,".help")==0){
+        commandselection();
+        }
+        if (strcmp(input,"exit")==0) {            
+            exit(0);
+            break;
+        }
+        commands(char command);
+    }
+}
 void commandselection() {
     printf("\nCommands:\n");
     printf("1. Read File\n");
     printf("2. Create file\n");
     printf("3. Edit file\n");
     printf("4. Delete file\n");
-    printf("5. Exit\n");
     printf("Enter command as a corresponding number: ");
 }
 
@@ -38,10 +50,6 @@ void commands(char command) {
         break;
     case '4':
         deletefile();
-        break;
-    case '5':
-        printf("Exiting program\n");
-        exit(0);
         break;
     default:
         printf("Invalid command\n");
