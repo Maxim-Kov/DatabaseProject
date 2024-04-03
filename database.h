@@ -1,7 +1,6 @@
-void commandselction();
+void commandselection();
 void commands(char command);
-void createfile();
-void deletefile();
-void editfile();
-void readfile();
-void metacommand();
+void create();
+void delete();
+void edit();
+void read();
