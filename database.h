@@ -4,3 +4,4 @@ void createfile();
 void deletefile();
 void editfile();
 void readfile();
+void metacommand();

@@ -1,32 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "database.h"
+//#include "database.h"
 #include <string.h>
 
+void commandselection();
+void commands(char command);
+void createfile();
+void deletefile();
+void editfile();
+void readfile();
+void metacommand();
+char command[100];
+char input[100];
+
 int main() {
-    char command;
 
     while (1) {
-        printf("type a command assocaited by number in or .help for help or .exit to exit");
+        printf("type a command associated by number in or .help for help or .exit to exit\n");
         metacommand();
-        scanf(" %c", &command);
-        commands(command);
+        commands(*command); 
     }
     return 0;
 }
-void metacommand(){
-    char input = 4;
-    scanf("c", input);
-    while(1){
-        if (strcmp(input,".help")==0){
+void metacommand() {
+    scanf("%s", input);
+    if (strcmp(input, ".help") == 0) {
         commandselection();
-        }
-        if (strcmp(input,"exit")==0) {            
-            exit(0);
-            break;
-        }
-        commands(char command);
+    } else if (strcmp(input, ".exit") == 0) {
+        exit(0);
     }
+    strcpy(command, input);
 }
 void commandselection() {
     printf("\nCommands:\n");
@@ -34,7 +37,7 @@ void commandselection() {
     printf("2. Create file\n");
     printf("3. Edit file\n");
     printf("4. Delete file\n");
-    printf("Enter command as a corresponding number: ");
+    printf("Enter command as a corresponding number:\n");
 }
 
 void commands(char command) {
@@ -106,7 +109,7 @@ void editfile() {
             break;
         }
         size_t input_length = strlen(input);
-        text = realloc(text, (length + input_length + 1) * sizeof(char));
+        text = realloc(text, (length) * sizeof(char));
         if (text == NULL) {
             printf("Memory allocation failed\n");
             return;
