@@ -83,17 +83,22 @@ int loadFromFile(Person **persons) {
     return count;
 }
 
-void delete() {
-
-
+void deletePerson(Person **persons, int *count, int index) {
+    if (index >= 0 && index < *count) {
+        for (int i = index; i < *count - 1; i++) {
+            (*persons)[i] = (*persons)[i + 1];
+        }
+        *persons = realloc(*persons, (*count - 1) * sizeof(Person));
+        (*count)--;
+        printf("Person deleted.\n");
+    } else {
+        printf("Invalid Person.\n");
+    }
 }
 
-void read() {
-
-
+void read(Person **persons, int *count) {
 }
 
-void edit(){
-
+void edit(Person **persons, int *count, char * name, int age) {
 
 }
