@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "sockutils.h"
+
+
 
 #define STRING_TYPE 0
 #define INT_TYPE 1
@@ -240,10 +243,18 @@ int main() {
 
     char input[50];
 
+    //SERVER INFO, allows port 8080, up to 5 people users waiting, but services one user
+    int server = make_server("8080", 5);
+    while(1){
+        int client = server_accept(server);
+        dup2(client, 0);
+        dup2(client, 1);
+        dup2(client, 2);
+
     while (1) {
         printf("Type a command or type '.help' to see possible commands: ");
         scanf("%s", input);
-
+        
         if (strcmp(input, ".exit") == 0) {
             printf("Exiting program.\n");
             break;
@@ -301,7 +312,7 @@ int main() {
         free(data_types[i].fields);
         free(data_types[i].data);
         free(data_types[i].num_data);
+        }
     }
-
     return 0;
 }
