@@ -31,7 +31,7 @@ struct DataType createDataType(char name[], int num_fields, struct Field fields[
     new_data_type.num_fields = num_fields;
     new_data_type.fields = malloc(num_fields * sizeof(struct Field));
     if (new_data_type.fields == NULL) {
-        printf("Memory allocation failed.\n");
+        printf("Memory allocation failed :(\n");
         exit(1);
     }
     for (int i = 0; i < num_fields; i++) {
@@ -254,8 +254,8 @@ int main() {
             printf("create : Create a new data type\n");
             printf("add : Add data to a data type\n");
             printf("view : View data of a specific data type\n");
-            printf("delete_type : Delete an entire data type\n");
-            printf("delete_entry : Delete a single data entry within a data type\n");
+            printf("del_datatype : Delete an entire data type\n");
+            printf("del_dataentry : Delete a single data entry within a data type\n");
         } else if (strcmp(input, "create") == 0) {
             printf("Enter the name of the new data type: ");
             char name[50];
@@ -282,9 +282,9 @@ int main() {
             addDataToDataType(data_types, num_data_types);
         } else if (strcmp(input, "view") == 0) {
             viewDataTypeData(data_types, num_data_types);
-        } else if (strcmp(input, "delete_type") == 0) {
+        } else if (strcmp(input, "del_datatype") == 0) {
             deleteDataType(data_types, &num_data_types);
-        } else if (strcmp(input, "delete_entry") == 0) {
+        } else if (strcmp(input, "del_dataentry") == 0) {
             deleteDataEntry(data_types, num_data_types);
         } else {
             printf("Unknown command. Type '.help' to see possible commands.\n");
